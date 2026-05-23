@@ -1,0 +1,28 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://fulfillment-api-eus.partners.gopuff.com/shopify/v1/shops/zones/check",
+    "headers": {
+      "Content-Type": "application/json",
+      "X-Gopuff-Partner-Key": "pk_partner_REDACTED"
+    },
+    "body": {
+      "address": {
+        "line1": "1500 Market St",
+        "city": "Philadelphia",
+        "region": "PA",
+        "postal_code": "19102",
+        "country": "US"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "in_zone": true,
+      "mfc_id": "mfc_phl_center_city",
+      "delivery_eta_minutes_min": 15,
+      "delivery_eta_minutes_max": 30
+    }
+  }
+}

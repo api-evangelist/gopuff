@@ -1,0 +1,82 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Powered by Gopuff — Availability
+  description: 'Powered by Gopuff Fulfillment API — Availability. 1 operation. Lead operation: Get product availability.
+    Self-contained Naftiko capability for per-UPC MFC inventory checks.'
+  tags:
+  - Gopuff
+  - Availability
+  - Quick Commerce
+  - Catalog
+  created: '2026-05-23'
+  modified: '2026-05-23'
+binds:
+- namespace: env
+  keys:
+    GOPUFF_PARTNER_KEY: GOPUFF_PARTNER_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: fulfillment-availability
+    baseUri: https://fulfillment-api-eus.partners.gopuff.com/shopify/v1
+    description: Powered by Gopuff product-availability resource.
+    resources:
+    - name: shops-availability
+      path: /shops/availability
+      operations:
+      - name: getproductavailability
+        method: POST
+        description: Get product availability at the serving MFC
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apiKey
+      in: header
+      name: X-Gopuff-Partner-Key
+      value: '{{env.GOPUFF_PARTNER_KEY}}'
+  exposes:
+  - type: rest
+    namespace: fulfillment-availability-rest
+    port: 8080
+    description: REST adapter for Powered by Gopuff availability.
+    resources:
+    - path: /v1/availability
+      name: availability
+      description: REST surface for product availability.
+      operations:
+      - method: POST
+        name: getproductavailability
+        description: Get product availability
+        call: fulfillment-availability.getproductavailability
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: fulfillment-availability-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Powered by Gopuff availability.
+    tools:
+    - name: get-product-availability
+      description: Look up real-time product availability at the Gopuff MFC serving a customer location.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fulfillment-availability.getproductavailability
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

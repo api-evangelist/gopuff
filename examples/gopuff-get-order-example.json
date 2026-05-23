@@ -1,0 +1,20 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://fulfillment-api-eus.partners.gopuff.com/shopify/v1/shops/orders/gp_01HXYZABC123",
+    "headers": {
+      "X-Gopuff-Partner-Key": "pk_partner_REDACTED"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "gopuff_order_id": "gp_01HXYZABC123",
+      "shopify_order_id": "5678901234",
+      "mfc_id": "mfc_phl_center_city",
+      "status": "out_for_delivery",
+      "tracking_url": "https://track.gopuff.com/gp_01HXYZABC123",
+      "created_at": "2026-05-23T19:42:11Z"
+    }
+  }
+}

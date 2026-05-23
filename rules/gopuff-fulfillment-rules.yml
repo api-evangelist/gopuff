@@ -1,0 +1,65 @@
+extends:
+  - [spectral:oas, all]
+documentationUrl: https://github.com/api-evangelist/gopuff/blob/main/rules/gopuff-fulfillment-rules.yml
+rules:
+  gopuff-info-contact-defined:
+    description: Powered by Gopuff specs must include a contact for partner support.
+    given: $.info
+    severity: error
+    then:
+      field: contact
+      function: truthy
+  gopuff-info-terms-defined:
+    description: Powered by Gopuff specs must reference the Gopuff terms of service.
+    given: $.info
+    severity: error
+    then:
+      field: termsOfService
+      function: truthy
+  gopuff-server-must-be-partner-host:
+    description: All servers must point at fulfillment-api-eus.partners.gopuff.com under the /shopify/v1 base.
+    given: $.servers[*].url
+    severity: error
+    then:
+      function: pattern
+      functionOptions:
+        match: '^https:\\/\\/fulfillment-api-[a-z]+\\.partners\\.gopuff\\.com\\/shopify\\/v1$'
+  gopuff-operation-summary-title-case:
+    description: Operation summaries must use Title Case.
+    given: $.paths[*][get,post,put,patch,delete].summary
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: '^([A-Z][a-zA-Z0-9]*)( [A-Z][a-zA-Z0-9]*)*$'
+  gopuff-operation-id-camel-case:
+    description: operationId values must use camelCase.
+    given: $.paths[*][get,post,put,patch,delete].operationId
+    severity: error
+    then:
+      function: pattern
+      functionOptions:
+        match: '^[a-z][a-zA-Z0-9]+$'
+  gopuff-operation-must-have-tag:
+    description: Every operation must declare exactly one tag.
+    given: $.paths[*][get,post,put,patch,delete].tags
+    severity: error
+    then:
+      function: length
+      functionOptions:
+        min: 1
+        max: 1
+  gopuff-security-required:
+    description: The partner API requires the X-Gopuff-Partner-Key apiKey scheme on every operation.
+    given: $.paths[*][get,post,put,patch,delete]
+    severity: error
+    then:
+      field: security
+      function: truthy
+  gopuff-error-schema-defined:
+    description: A reusable Error schema must be defined in components.
+    given: $.components.schemas
+    severity: error
+    then:
+      field: Error
+      function: truthy

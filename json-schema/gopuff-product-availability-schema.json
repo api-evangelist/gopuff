@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/gopuff/main/json-schema/gopuff-product-availability-schema.json",
+  "title": "Gopuff Product Availability",
+  "description": "Per-UPC availability at a Gopuff micro-fulfillment center serving a partner customer.",
+  "type": "object",
+  "properties": {
+    "mfc_id": {
+      "type": "string",
+      "description": "Identifier of the Gopuff micro-fulfillment center returning availability."
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "upc": {
+            "type": "string",
+            "description": "Universal Product Code used to map merchant SKUs to Gopuff catalog entries."
+          },
+          "available": {
+            "type": "boolean",
+            "description": "True when the item is currently in stock at the serving MFC."
+          },
+          "quantity_on_hand": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Approximate units available at the serving MFC."
+          }
+        },
+        "required": ["upc", "available"]
+      }
+    }
+  },
+  "required": ["items"]
+}

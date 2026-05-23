@@ -1,0 +1,34 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: gopuff
+providerId: gopuff
+created: '2026-05-23'
+modified: '2026-05-23'
+reconciled: false
+tags:
+  - Quick Commerce
+  - Fulfillment
+  - Rate Limiting
+description: |
+  Gopuff has not published documented request-rate, concurrency, or quota limits for the Powered by
+  Gopuff Fulfillment API. The partner Developer Portal currently lists the API Reference as "coming
+  soon", so any limits applied at the edge are negotiated as part of the per-partnership agreement.
+  This file is a placeholder noting that absence; clients should implement defensive backoff on any
+  HTTP 429 or 5xx responses returned by fulfillment-api-eus.partners.gopuff.com.
+sources:
+  - https://docs.poweredbygopuff.com/
+  - https://docs.poweredbygopuff.com/api-reference.md
+responseCodes:
+  throttled: 429
+limits: []
+policies:
+  - name: Backoff Strategy
+    description: Clients should implement exponential backoff with jitter on 429 and 5xx responses from
+      the Powered by Gopuff Fulfillment API.
+  - name: Partner Coordination
+    description: Coordinate any planned load testing or burst traffic with your Gopuff partner contact
+      before running; published limits are not currently available.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

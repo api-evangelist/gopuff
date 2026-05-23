@@ -1,0 +1,38 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://fulfillment-api-eus.partners.gopuff.com/shopify/v1/shops/rates",
+    "headers": {
+      "Content-Type": "application/json",
+      "X-Gopuff-Partner-Key": "pk_partner_REDACTED"
+    },
+    "body": {
+      "shipping_address": {
+        "line1": "1500 Market St",
+        "city": "Philadelphia",
+        "region": "PA",
+        "postal_code": "19102",
+        "country": "US"
+      },
+      "items": [
+        { "upc": "076840100569", "quantity": 1 },
+        { "upc": "012000161551", "quantity": 2 }
+      ]
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "rates": [
+        {
+          "service_name": "Instant Delivery - Powered by Gopuff",
+          "service_code": "gopuff_instant",
+          "total_price": 399,
+          "currency": "USD",
+          "min_delivery_minutes": 15,
+          "max_delivery_minutes": 30
+        }
+      ]
+    }
+  }
+}

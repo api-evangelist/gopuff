@@ -1,0 +1,70 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+provider: gopuff
+providerId: gopuff
+publisherName: GoBrands, Inc. (dba Gopuff)
+serviceCategory: Last-Mile Delivery
+created: '2026-05-23'
+modified: '2026-05-23'
+reconciled: false
+tags:
+  - Quick Commerce
+  - Instant Delivery
+  - Last Mile
+  - Fulfillment
+  - FinOps
+  - FOCUS
+description: |
+  FOCUS-aligned FinOps shape for the Powered by Gopuff partner platform. Cost is incurred per Gopuff
+  delivery routed through the Fulfillment API rather than per API call; rates are pre-negotiated by
+  partnership agreement and surfaced to consumers as the "Instant Delivery - Powered by Gopuff" line
+  at Shopify checkout. Public price lists are not available, so per-meter unit prices below are
+  intentionally left as `negotiated` until a partnership invoice can confirm them.
+sources:
+  - https://poweredby.gopuff.com/
+  - https://poweredby.gopuff.com/pages/fulfillment
+  - https://docs.poweredbygopuff.com/carrier-service.md
+billingModel:
+  pricingCategory: Negotiated
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+    - Usage
+    - Refund
+    - Tax
+focusColumns:
+  ServiceName: Powered by Gopuff Fulfillment
+  ServiceCategory: Last-Mile Delivery
+  ProviderName: Gopuff
+  PublisherName: GoBrands, Inc.
+  InvoiceIssuerName: GoBrands, Inc.
+  BillingCurrency: USD
+  ChargeCategory: Usage
+meters:
+  - name: instant_deliveries
+    description: Count of completed Gopuff Instant Delivery orders routed through the Powered by Gopuff
+      Fulfillment API.
+    unit: delivery
+    aggregation: count
+    dimensions:
+      - mfc_id
+      - region
+      - partner_shop_id
+  - name: gross_merchandise_value
+    description: Gross merchandise value of the line items in routed orders, used as a billing input on
+      partnerships where Gopuff retains a percentage rather than a flat per-delivery fee.
+    unit: USD
+    aggregation: sum
+    dimensions:
+      - mfc_id
+      - partner_shop_id
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

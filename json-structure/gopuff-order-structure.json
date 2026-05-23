@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-structure.org/draft/2025-01/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/gopuff/main/json-structure/gopuff-order-structure.json",
+  "title": "Gopuff Order Structure",
+  "description": "JSON Structure for a Powered by Gopuff order, capturing canonical fields used by the partner Shopify fulfillment integration.",
+  "type": "object",
+  "properties": {
+    "gopuff_order_id": { "type": "string" },
+    "shopify_order_id": { "type": "string" },
+    "mfc_id": { "type": "string" },
+    "status": {
+      "type": "string",
+      "enum": ["accepted", "picking", "out_for_delivery", "delivered", "cancelled"]
+    },
+    "shipping_line": {
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "source": { "type": "string" }
+      }
+    },
+    "shipping_address": {
+      "type": "object",
+      "properties": {
+        "line1": { "type": "string" },
+        "line2": { "type": "string" },
+        "city": { "type": "string" },
+        "region": { "type": "string" },
+        "postal_code": { "type": "string" },
+        "country": { "type": "string" }
+      }
+    },
+    "customer": {
+      "type": "object",
+      "properties": {
+        "email": { "type": "string" },
+        "phone": { "type": "string" }
+      }
+    },
+    "line_items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "upc": { "type": "string" },
+          "quantity": { "type": "integer" },
+          "price": { "type": "integer" },
+          "currency": { "type": "string" }
+        }
+      }
+    },
+    "tracking_url": { "type": "string" },
+    "created_at": { "type": "string", "format": "date-time" },
+    "delivered_at": { "type": "string", "format": "date-time" }
+  },
+  "required": ["gopuff_order_id", "status"]
+}

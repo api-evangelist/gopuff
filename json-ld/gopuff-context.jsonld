@@ -1,0 +1,106 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "gopuff": "https://www.gopuff.com/schemas/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+
+    "MicroFulfillmentCenter": {
+      "@id": "gopuff:MicroFulfillmentCenter",
+      "@context": {
+        "mfc_id": "schema:identifier",
+        "region": "gopuff:region",
+        "address": {
+          "@id": "schema:address",
+          "@type": "schema:PostalAddress"
+        }
+      }
+    },
+
+    "DeliveryZone": {
+      "@id": "gopuff:DeliveryZone",
+      "@context": {
+        "in_zone": "gopuff:inZone",
+        "mfc_id": "schema:identifier",
+        "delivery_eta_minutes_min": "gopuff:etaMinutesMin",
+        "delivery_eta_minutes_max": "gopuff:etaMinutesMax"
+      }
+    },
+
+    "ProductAvailability": {
+      "@id": "gopuff:ProductAvailability",
+      "@context": {
+        "upc": "schema:gtin12",
+        "available": "schema:availability",
+        "quantity_on_hand": "schema:inventoryLevel",
+        "mfc_id": "schema:identifier"
+      }
+    },
+
+    "Order": {
+      "@id": "gopuff:Order",
+      "@context": {
+        "gopuff_order_id": "schema:identifier",
+        "shopify_order_id": "gopuff:shopifyOrderId",
+        "mfc_id": "schema:identifier",
+        "status": "schema:orderStatus",
+        "shipping_address": {
+          "@id": "schema:address",
+          "@type": "schema:PostalAddress"
+        },
+        "customer": {
+          "@id": "schema:customer",
+          "@type": "schema:Person"
+        },
+        "line_items": {
+          "@id": "schema:orderedItem",
+          "@container": "@set"
+        },
+        "tracking_url": {
+          "@id": "schema:trackingUrl",
+          "@type": "@id"
+        },
+        "created_at": {
+          "@id": "schema:orderDate",
+          "@type": "xsd:dateTime"
+        },
+        "delivered_at": {
+          "@id": "gopuff:deliveredAt",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "LineItem": {
+      "@id": "gopuff:LineItem",
+      "@context": {
+        "upc": "schema:gtin12",
+        "quantity": "schema:orderQuantity",
+        "price": "schema:price",
+        "currency": "schema:priceCurrency"
+      }
+    },
+
+    "CarrierRate": {
+      "@id": "gopuff:CarrierRate",
+      "@context": {
+        "service_name": "schema:name",
+        "service_code": "schema:identifier",
+        "total_price": "schema:price",
+        "currency": "schema:priceCurrency",
+        "min_delivery_minutes": "gopuff:minDeliveryMinutes",
+        "max_delivery_minutes": "gopuff:maxDeliveryMinutes"
+      }
+    },
+
+    "DeliveryPartner": {
+      "@id": "gopuff:DeliveryPartner",
+      "@context": {
+        "name": "schema:name",
+        "vehicle": "gopuff:vehicleType",
+        "rating": "schema:aggregateRating"
+      }
+    }
+  }
+}

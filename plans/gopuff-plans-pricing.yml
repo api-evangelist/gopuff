@@ -1,0 +1,59 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: gopuff
+providerId: gopuff
+created: '2026-05-23'
+modified: '2026-05-23'
+reconciled: false
+tags:
+  - Quick Commerce
+  - Instant Delivery
+  - Fulfillment
+  - Last Mile
+description: |
+  Gopuff does not publish a public, self-service price list for the Powered by Gopuff partner platform.
+  Access to the Fulfillment App, Storefronts theme, and Developer Portal APIs is gated by a partner
+  agreement negotiated directly with Gopuff. Documentation explicitly notes that Fulfillment and
+  Storefronts are only available to brands whose products are already sold on the Gopuff consumer
+  platform, and that the delivery rates returned at Shopify checkout are pre-negotiated by partnership
+  agreement — merchants are explicitly forbidden from adding handling fees on top of those rates.
+  The consumer-side Gopuff app charges variable delivery and service fees per order, plus an optional
+  Gopuff Fam subscription for free delivery; those consumer prices are not part of the partner API plan
+  surface and are not modeled here.
+sources:
+  - https://poweredby.gopuff.com/
+  - https://poweredby.gopuff.com/pages/storefronts
+  - https://poweredby.gopuff.com/pages/fulfillment
+  - https://docs.poweredbygopuff.com/
+  - https://docs.poweredbygopuff.com/carrier-service.md
+plans:
+  - id: gopuff-powered-by-partner
+    name: Powered by Gopuff Partner
+    type: enterprise
+    description: |
+      Negotiated partner agreement covering use of the Fulfillment Shopify app, the Storefronts theme,
+      and the underlying Powered by Gopuff Fulfillment API. Pricing is per-partnership and not published.
+      Eligibility is restricted to brands whose products are already merchandised on the Gopuff consumer
+      platform.
+    entries:
+      - label: Per-delivery rate
+        name: per_delivery_rate
+        type: usage-based
+        metric: delivery
+        timeFrame: month
+        geo: US
+        unit: 1
+        price: 'negotiated'
+        userMultiplied: false
+        notes: Pre-negotiated Gopuff Instant Delivery rate returned via Shopify Carrier Service; partners
+          may not add handling fees on top.
+    elements:
+      - name: Powered by Gopuff Shopify Fulfillment app
+      - name: Storefronts Powered by Gopuff theme
+      - name: Fulfillment API access (zones, availability, rates, orders)
+      - name: Realtime delivery tracking via SMS
+      - name: Gopuff-managed customer service for delivery issues
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

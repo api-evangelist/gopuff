@@ -1,0 +1,137 @@
+aid: gopuff
+name: Gopuff
+description: Gopuff is a private quick-commerce company headquartered in Philadelphia that operates its own
+  network of micro-fulfillment centers to deliver everyday essentials — snacks, beverages, household goods,
+  fresh items, alcohol, and over-the-counter medicines — to consumers in roughly 15 to 30 minutes. Beyond
+  its direct-to-consumer mobile app and website, Gopuff exposes its instant-delivery infrastructure to brands
+  and retailers through the Powered by Gopuff platform, which offers a Shopify Fulfillment app, a white-labeled
+  Storefronts theme, and a partner Developer Portal backed by HTTP APIs (e.g. fulfillment-api-eus.partners.gopuff.com).
+  Gopuff also operates a Delivery Partner program with its own driver pay portal, scheduling UI, and ID-scanning
+  flow (alcohol delivery uses the Microblink BlinkID SDK).
+url: https://raw.githubusercontent.com/api-evangelist/gopuff/refs/heads/main/apis.yml
+humanURL: https://www.gopuff.com
+image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+- Quick Commerce
+- Instant Delivery
+- Last Mile
+- Grocery
+- Fulfillment
+- Retail
+- Logistics
+created: '2026-05-22'
+modified: '2026-05-23'
+specificationVersion: '0.20'
+type: Contract
+apis:
+- aid: gopuff:fulfillment-api
+  name: Powered by Gopuff Fulfillment API
+  description: |
+    The Powered by Gopuff Fulfillment API is the partner-facing HTTP surface used by Gopuff's Shopify Fulfillment
+    app and white-labeled Storefronts theme to determine whether a consumer is inside a Gopuff micro-fulfillment
+    center (MFC) delivery zone, to check real-time product availability at the local MFC, to surface carrier
+    rates at Shopify checkout, and to route orders from the merchant's storefront to Gopuff for picking, packing,
+    and delivery. Detailed reference documentation is published as "coming soon" at the partner docs site; the
+    base URL `https://fulfillment-api-eus.partners.gopuff.com/shopify/v1/shops` is wired into the Shopify app
+    embed as the canonical entry point and is the only publicly documented host.
+  humanURL: https://docs.poweredbygopuff.com/
+  baseURL: https://fulfillment-api-eus.partners.gopuff.com/shopify/v1
+  image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  tags:
+  - Fulfillment
+  - Instant Delivery
+  - Shopify
+  - Quick Commerce
+  - Last Mile
+  properties:
+  - type: Documentation
+    url: https://docs.poweredbygopuff.com/
+  - type: SignUp
+    url: https://poweredby.gopuff.com/
+  - type: OpenAPI
+    url: openapi/gopuff-fulfillment-openapi.yml
+  - type: NaftikoCapability
+    url: capabilities/fulfillment-zones.yaml
+  - type: NaftikoCapability
+    url: capabilities/fulfillment-availability.yaml
+  - type: NaftikoCapability
+    url: capabilities/fulfillment-orders.yaml
+  contact:
+  - FN: Powered by Gopuff
+    url: https://poweredby.gopuff.com/
+- aid: gopuff:storefronts-api
+  name: Powered by Gopuff Storefronts API
+  description: |
+    Storefronts Powered by Gopuff is a customizable Shopify theme integrated with Gopuff's catalog and delivery
+    APIs that enables brands to launch a white-labeled DTC website with built-in 15-minute delivery from a
+    Gopuff MFC. The same partner platform exposes three documented integration calls: a delivery-zone check
+    invoked when a customer enters their address, a per-MFC inventory-availability lookup driven by SKU/UPC
+    mapping, and an order-routing call that hands the completed checkout to the nearest MFC for fulfillment.
+    Public reference docs are not yet published; only the operational contract documented in the partner help
+    portal is available.
+  humanURL: https://poweredby.gopuff.com/pages/storefronts
+  baseURL: https://fulfillment-api-eus.partners.gopuff.com/shopify/v1
+  image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  tags:
+  - Storefronts
+  - Shopify
+  - DTC
+  - Quick Commerce
+  - Catalog
+  properties:
+  - type: Documentation
+    url: https://poweredby.gopuff.com/pages/storefronts
+  - type: SignUp
+    url: https://poweredby.gopuff.com/
+common:
+- type: Homepage
+  url: https://www.gopuff.com
+- type: Newsroom
+  url: https://www.gopuff.com/newsroom
+- type: Careers
+  url: https://www.gopuff.com/go/careers
+- type: HelpCenter
+  url: https://help.gopuff.com/
+- type: PartnerPortal
+  url: https://poweredby.gopuff.com/
+- type: PartnerDocumentation
+  url: https://docs.poweredbygopuff.com/
+- type: DeveloperPortal
+  url: https://devportaldocs.poweredbygopuff.com/
+- type: ShopifyApp
+  url: https://apps.shopify.com/powered-by-gopuff
+- type: DeliveryPartnerSignUp
+  url: https://deliver.gopuff.com/signup
+- type: DeliveryPartnerPayPortal
+  url: https://driver-pay.gopuff.com/
+- type: DeliveryPartnerScheduling
+  url: https://driver-scheduling-manager-ui.delivery-tech.gopuff.com/
+- type: DriverApp
+  url: https://www.gopuff.com/go/apps
+- type: GooglePlayDriverApp
+  url: https://play.google.com/store/apps/details?id=com.gopuff.godrive2.live
+- type: GitHubOrganization
+  url: https://github.com/gopuff
+- type: LinkedIn
+  url: https://www.linkedin.com/company/gopuff
+- type: JSONLD
+  url: json-ld/gopuff-context.jsonld
+- type: JSONSchema
+  url: json-schema/gopuff-delivery-zone-schema.json
+- type: JSONSchema
+  url: json-schema/gopuff-product-availability-schema.json
+- type: JSONSchema
+  url: json-schema/gopuff-order-schema.json
+- type: Vocabulary
+  url: vocabulary/gopuff-vocabulary.yml
+- type: SpectralRuleset
+  url: rules/gopuff-fulfillment-rules.yml
+- type: Plans
+  url: plans/gopuff-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/gopuff-rate-limits.yml
+- type: FinOps
+  url: finops/gopuff-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

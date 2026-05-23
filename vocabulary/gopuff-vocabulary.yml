@@ -1,0 +1,36 @@
+name: Gopuff Domain Vocabulary
+provider: Gopuff
+providerId: gopuff
+description: Tag-derived vocabulary for the Gopuff API surface; sourced from the Powered by Gopuff partner documentation
+  and the OpenAPI tags in this repo.
+terms:
+- term: Shops
+  description: The partnership between a Powered by Gopuff merchant Shopify shop and the Gopuff platform, including
+    partnership status, serving region, and availability thresholds.
+- term: Zones
+  description: Geographic eligibility check that determines whether a customer's address or IP location falls inside
+    the delivery polygon of a Gopuff micro-fulfillment center.
+- term: Availability
+  description: Real-time per-UPC stock check at the Gopuff MFC serving a given customer, used to selectively enable
+    instant-delivery messaging on partner storefronts.
+- term: Rates
+  description: Pre-negotiated Gopuff Instant Delivery carrier rates returned at Shopify checkout via the Carrier
+    Service framework; merchants cannot stack handling fees on top.
+- term: Orders
+  description: Completed Shopify checkouts routed to the nearest Gopuff MFC for picking, packing, and last-mile
+    delivery, returning a Gopuff Order ID and realtime tracking URL.
+- term: Micro Fulfillment Center
+  description: A Gopuff-operated hyper-local warehouse that holds curated inventory and dispatches Delivery Partners
+    to fulfill orders within roughly 15 to 30 minutes.
+- term: Delivery Partner
+  description: A 1099 driver in the Gopuff Driver program who picks up orders at an MFC and delivers them to the
+    end consumer; supported by the Delivery Partner Pay Portal and scheduling UI.
+- term: Storefronts
+  description: White-labeled Shopify theme integrated with Gopuff's catalog and delivery APIs, enabling brands to
+    launch their own DTC website backed by 15-minute Gopuff fulfillment.
+- term: Fulfillment App
+  description: Shopify app that adds Gopuff Instant Delivery as an additional shipping option on an existing
+    merchant store with no code changes.
+- term: Instant Delivery
+  description: Gopuff's 15-to-30 minute delivery service offered through both the consumer Gopuff app and the
+    Powered by Gopuff partner platform.

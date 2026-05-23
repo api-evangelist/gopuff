@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/gopuff/main/json-schema/gopuff-order-schema.json",
+  "title": "Gopuff Order",
+  "description": "An order routed from a Powered by Gopuff partner Shopify checkout to a Gopuff micro-fulfillment center for picking, packing, and 15-30 minute delivery.",
+  "type": "object",
+  "properties": {
+    "gopuff_order_id": {
+      "type": "string",
+      "description": "Gopuff-assigned order identifier, also written back to the partner's Shopify order Additional details panel."
+    },
+    "shopify_order_id": {
+      "type": "string",
+      "description": "Originating Shopify order identifier on the partner store."
+    },
+    "mfc_id": {
+      "type": "string",
+      "description": "Identifier of the Gopuff MFC fulfilling the order."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["accepted", "picking", "out_for_delivery", "delivered", "cancelled"],
+      "description": "Current fulfillment lifecycle state."
+    },
+    "shipping_line": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "const": "Instant Delivery - Powered by Gopuff"
+        },
+        "source": {
+          "type": "string",
+          "const": "Powered By Gopuff"
+        }
+      },
+      "required": ["title", "source"]
+    },
+    "shipping_address": {
+      "type": "object",
+      "properties": {
+        "line1": { "type": "string" },
+        "line2": { "type": "string" },
+        "city": { "type": "string" },
+        "region": { "type": "string" },
+        "postal_code": { "type": "string" },
+        "country": { "type": "string" }
+      },
+      "required": ["line1", "city", "postal_code", "country"]
+    },
+    "customer": {
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "format": "email" },
+        "phone": { "type": "string" }
+      }
+    },
+    "line_items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "upc": { "type": "string" },
+          "quantity": { "type": "integer", "minimum": 1 },
+          "price": { "type": "integer", "minimum": 0 },
+          "currency": { "type": "string" }
+        },
+        "required": ["upc", "quantity"]
+      }
+    },
+    "tracking_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Realtime delivery tracking URL surfaced to the customer via Gopuff SMS."
+    },
+    "created_at": { "type": "string", "format": "date-time" },
+    "delivered_at": { "type": "string", "format": "date-time" }
+  },
+  "required": ["gopuff_order_id", "status"]
+}

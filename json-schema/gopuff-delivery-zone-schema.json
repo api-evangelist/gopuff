@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/gopuff/main/json-schema/gopuff-delivery-zone-schema.json",
+  "title": "Gopuff Delivery Zone Check",
+  "description": "Result of a Powered by Gopuff delivery-zone eligibility check for a consumer address or coarse IP location.",
+  "type": "object",
+  "properties": {
+    "in_zone": {
+      "type": "boolean",
+      "description": "True when the supplied location falls inside a Gopuff micro-fulfillment center delivery zone."
+    },
+    "mfc_id": {
+      "type": "string",
+      "description": "Identifier of the Gopuff micro-fulfillment center that would service the order."
+    },
+    "delivery_eta_minutes_min": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Lower bound of the expected delivery window in minutes."
+    },
+    "delivery_eta_minutes_max": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Upper bound of the expected delivery window in minutes."
+    },
+    "checked_address": {
+      "type": "object",
+      "properties": {
+        "line1": { "type": "string" },
+        "city": { "type": "string" },
+        "region": { "type": "string" },
+        "postal_code": { "type": "string" },
+        "country": { "type": "string" }
+      },
+      "required": ["line1", "city", "postal_code", "country"]
+    }
+  },
+  "required": ["in_zone"]
+}
