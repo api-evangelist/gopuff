@@ -11,7 +11,7 @@ description: >-
   SDK).
 url: https://raw.githubusercontent.com/api-evangelist/gopuff/refs/heads/main/apis.yml
 humanURL: https://www.gopuff.com
-image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Quick Commerce
   - Instant Delivery
@@ -37,7 +37,7 @@ apis:
       embed as the canonical entry point and is the only publicly documented host.
     humanURL: https://docs.poweredbygopuff.com/
     baseURL: https://fulfillment-api-eus.partners.gopuff.com/shopify/v1
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     tags:
       - Fulfillment
       - Instant Delivery
@@ -66,7 +66,7 @@ apis:
       portal is available.
     humanURL: https://poweredby.gopuff.com/pages/storefronts
     baseURL: https://fulfillment-api-eus.partners.gopuff.com/shopify/v1
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     tags:
       - Storefronts
       - Shopify
