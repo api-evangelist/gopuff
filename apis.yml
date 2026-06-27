@@ -47,7 +47,7 @@ apis:
     properties:
       - type: Documentation
         url: https://docs.poweredbygopuff.com/
-      - type: SignUp
+      - type: Signup
         url: https://poweredby.gopuff.com/
       - type: OpenAPI
         url: openapi/gopuff-fulfillment-openapi.yml
@@ -76,10 +76,10 @@ apis:
     properties:
       - type: Documentation
         url: https://poweredby.gopuff.com/pages/storefronts
-      - type: SignUp
+      - type: Signup
         url: https://poweredby.gopuff.com/
 common:
-  - type: Homepage
+  - type: Website
     url: https://www.gopuff.com
   - type: Newsroom
     url: https://www.gopuff.com/newsroom
