@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/gopuff-fulfillment-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: partnerApiKey
+  type: apiKey
+  in: header
+  parameter: X-Gopuff-Partner-Key
+  description: Partner API key issued by Gopuff during onboarding to the Powered by Gopuff platform.
+    Keys are scoped to a single partnership/shop.
+  sources:
+  - openapi/gopuff-fulfillment-openapi.yml

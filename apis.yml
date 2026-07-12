@@ -79,6 +79,12 @@ apis:
       - type: Signup
         url: https://poweredby.gopuff.com/
 common:
+  - type: DomainSecurity
+    url: security/gopuff-domain-security.yml
+  - type: Authentication
+    url: authentication/gopuff-authentication.yml
+  - url: https://www.gopuff.com/newsroom
+    type: Blog
   - type: Website
     url: https://www.gopuff.com
   - type: Newsroom
