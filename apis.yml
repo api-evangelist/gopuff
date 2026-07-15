@@ -79,6 +79,8 @@ apis:
       - type: Signup
         url: https://poweredby.gopuff.com/
 common:
+  - type: AgenticAccess
+    url: agentic-access/gopuff-agentic-access.yml
   - type: DomainSecurity
     url: security/gopuff-domain-security.yml
   - type: Authentication
