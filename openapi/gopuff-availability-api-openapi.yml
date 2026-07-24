@@ -1,0 +1,134 @@
+openapi: 3.1.0
+info:
+  title: Powered by Gopuff Fulfillment Availability API
+  description: Partner-facing API powering the Powered by Gopuff Shopify Fulfillment app and the Storefronts Powered by Gopuff theme. The API determines whether a consumer's address falls inside a Gopuff micro-fulfillment center (MFC) delivery zone, exposes real-time product availability at the serving MFC, surfaces Gopuff carrier rates at Shopify checkout, and accepts orders that should be routed to Gopuff for picking, packing, and delivery in roughly 15 to 30 minutes. The canonical entry point is the shops resource wired into the Powered by Gopuff Shopify app embed block. Detailed reference documentation is published by Gopuff as "coming soon"; the surfaces captured here are derived from the partner Help Center and the Powered by Gopuff Shopify theme behavior.
+  version: '1.0'
+  contact:
+    name: Powered by Gopuff Partner Support
+    url: https://poweredby.gopuff.com/
+  termsOfService: https://www.gopuff.com/go/terms-and-conditions
+servers:
+- url: https://fulfillment-api-eus.partners.gopuff.com/shopify/v1
+  description: Production Partner API (US East)
+security:
+- partnerApiKey: []
+tags:
+- name: Availability
+  description: Look up real-time product availability at the Gopuff MFC servicing a given customer location.
+paths:
+  /shops/availability:
+    post:
+      operationId: getProductAvailability
+      summary: Get Product Availability
+      description: Returns real-time product availability at the Gopuff MFC servicing a given customer location. Products are matched via UPC mapped to the Gopuff catalog during partner onboarding; only items in the partner's curated instant-delivery collection are checked.
+      tags:
+      - Availability
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AvailabilityRequest'
+      responses:
+        '200':
+          description: Availability returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AvailabilityResponse'
+        '400':
+          description: Invalid request body.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+      required:
+      - code
+      - message
+    ProductAvailability:
+      type: object
+      properties:
+        upc:
+          type: string
+        available:
+          type: boolean
+        quantity_on_hand:
+          type: integer
+          description: Approximate units available at the serving MFC.
+      required:
+      - upc
+      - available
+    AvailabilityRequest:
+      type: object
+      properties:
+        address:
+          $ref: '#/components/schemas/Address'
+        mfc_id:
+          type: string
+          description: Optional MFC override if previously resolved via the zone check.
+        upcs:
+          type: array
+          description: List of UPCs to check against the local MFC inventory.
+          items:
+            type: string
+      required:
+      - upcs
+    AvailabilityResponse:
+      type: object
+      properties:
+        mfc_id:
+          type: string
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductAvailability'
+      required:
+      - items
+    Address:
+      type: object
+      properties:
+        line1:
+          type: string
+        line2:
+          type: string
+        city:
+          type: string
+        region:
+          type: string
+          description: State or province code.
+        postal_code:
+          type: string
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
+      required:
+      - line1
+      - city
+      - postal_code
+      - country
+  securitySchemes:
+    partnerApiKey:
+      type: apiKey
+      in: header
+      name: X-Gopuff-Partner-Key
+      description: Partner API key issued by Gopuff during onboarding to the Powered by Gopuff platform. Keys are scoped to a single partnership/shop.
+externalDocs:
+  description: Powered by Gopuff Partner Documentation
+  url: https://docs.poweredbygopuff.com/

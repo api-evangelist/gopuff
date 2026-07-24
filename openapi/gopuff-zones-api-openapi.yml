@@ -1,0 +1,126 @@
+openapi: 3.1.0
+info:
+  title: Powered by Gopuff Fulfillment Availability Zones API
+  description: Partner-facing API powering the Powered by Gopuff Shopify Fulfillment app and the Storefronts Powered by Gopuff theme. The API determines whether a consumer's address falls inside a Gopuff micro-fulfillment center (MFC) delivery zone, exposes real-time product availability at the serving MFC, surfaces Gopuff carrier rates at Shopify checkout, and accepts orders that should be routed to Gopuff for picking, packing, and delivery in roughly 15 to 30 minutes. The canonical entry point is the shops resource wired into the Powered by Gopuff Shopify app embed block. Detailed reference documentation is published by Gopuff as "coming soon"; the surfaces captured here are derived from the partner Help Center and the Powered by Gopuff Shopify theme behavior.
+  version: '1.0'
+  contact:
+    name: Powered by Gopuff Partner Support
+    url: https://poweredby.gopuff.com/
+  termsOfService: https://www.gopuff.com/go/terms-and-conditions
+servers:
+- url: https://fulfillment-api-eus.partners.gopuff.com/shopify/v1
+  description: Production Partner API (US East)
+security:
+- partnerApiKey: []
+tags:
+- name: Zones
+  description: Check whether a consumer address or IP location falls inside a Gopuff micro-fulfillment center (MFC) delivery zone.
+paths:
+  /shops/zones/check:
+    post:
+      operationId: checkDeliveryZone
+      summary: Check Delivery Zone Eligibility
+      description: Determines whether a customer location is inside a Gopuff MFC delivery zone. Either an address or a coarse IP location can be supplied. When the customer is in zone, the response includes the serving MFC identifier and the eligible product collection so the Powered by Gopuff Shopify theme can selectively enable instant delivery messaging.
+      tags:
+      - Zones
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ZoneCheckRequest'
+      responses:
+        '200':
+          description: Zone check completed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ZoneCheckResponse'
+        '400':
+          description: Invalid request body.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    ZoneCheckResponse:
+      type: object
+      properties:
+        in_zone:
+          type: boolean
+          description: True when the location falls inside a Gopuff MFC delivery zone.
+        mfc_id:
+          type: string
+          description: Identifier of the Gopuff micro-fulfillment center that would service the order.
+        delivery_eta_minutes_min:
+          type: integer
+          description: Lower bound of the expected delivery window in minutes.
+        delivery_eta_minutes_max:
+          type: integer
+          description: Upper bound of the expected delivery window in minutes.
+      required:
+      - in_zone
+    ZoneCheckRequest:
+      type: object
+      properties:
+        address:
+          $ref: '#/components/schemas/Address'
+        ip_address:
+          type: string
+          description: Customer IP address used for coarse zone eligibility before address entry.
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+    Address:
+      type: object
+      properties:
+        line1:
+          type: string
+        line2:
+          type: string
+        city:
+          type: string
+        region:
+          type: string
+          description: State or province code.
+        postal_code:
+          type: string
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
+      required:
+      - line1
+      - city
+      - postal_code
+      - country
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+      required:
+      - code
+      - message
+  securitySchemes:
+    partnerApiKey:
+      type: apiKey
+      in: header
+      name: X-Gopuff-Partner-Key
+      description: Partner API key issued by Gopuff during onboarding to the Powered by Gopuff platform. Keys are scoped to a single partnership/shop.
+externalDocs:
+  description: Powered by Gopuff Partner Documentation
+  url: https://docs.poweredbygopuff.com/

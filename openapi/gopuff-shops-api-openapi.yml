@@ -1,0 +1,93 @@
+openapi: 3.1.0
+info:
+  title: Powered by Gopuff Fulfillment Availability Shops API
+  description: Partner-facing API powering the Powered by Gopuff Shopify Fulfillment app and the Storefronts Powered by Gopuff theme. The API determines whether a consumer's address falls inside a Gopuff micro-fulfillment center (MFC) delivery zone, exposes real-time product availability at the serving MFC, surfaces Gopuff carrier rates at Shopify checkout, and accepts orders that should be routed to Gopuff for picking, packing, and delivery in roughly 15 to 30 minutes. The canonical entry point is the shops resource wired into the Powered by Gopuff Shopify app embed block. Detailed reference documentation is published by Gopuff as "coming soon"; the surfaces captured here are derived from the partner Help Center and the Powered by Gopuff Shopify theme behavior.
+  version: '1.0'
+  contact:
+    name: Powered by Gopuff Partner Support
+    url: https://poweredby.gopuff.com/
+  termsOfService: https://www.gopuff.com/go/terms-and-conditions
+servers:
+- url: https://fulfillment-api-eus.partners.gopuff.com/shopify/v1
+  description: Production Partner API (US East)
+security:
+- partnerApiKey: []
+tags:
+- name: Shops
+  description: Manage the binding between a partner Shopify shop and the Powered by Gopuff partnership.
+paths:
+  /shops:
+    get:
+      operationId: getShop
+      summary: Get Partner Shop Status
+      description: Returns the partnership status, configured shop metadata, and serving region for the authenticated partner Shopify shop.
+      tags:
+      - Shops
+      responses:
+        '200':
+          description: Shop record found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Shop'
+        '401':
+          description: Authentication failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: No shop found for the provided credentials.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Shop:
+      type: object
+      properties:
+        shop_id:
+          type: string
+          description: Powered by Gopuff partner shop identifier.
+        shopify_shop_domain:
+          type: string
+          description: The myshopify.com domain of the partner shop.
+        partnership_status:
+          type: string
+          enum:
+          - created
+          - activated
+          - paused
+          description: Lifecycle status of the Gopuff partnership for this shop.
+        region:
+          type: string
+          description: Serving Gopuff partner region (e.g. eus for US East).
+        availability_threshold:
+          type: integer
+          description: Minimum number of in-stock SKUs required to consider a customer eligible.
+      required:
+      - shop_id
+      - shopify_shop_domain
+      - partnership_status
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+      required:
+      - code
+      - message
+  securitySchemes:
+    partnerApiKey:
+      type: apiKey
+      in: header
+      name: X-Gopuff-Partner-Key
+      description: Partner API key issued by Gopuff during onboarding to the Powered by Gopuff platform. Keys are scoped to a single partnership/shop.
+externalDocs:
+  description: Powered by Gopuff Partner Documentation
+  url: https://docs.poweredbygopuff.com/

@@ -1,0 +1,202 @@
+openapi: 3.1.0
+info:
+  title: Powered by Gopuff Fulfillment Availability Orders API
+  description: Partner-facing API powering the Powered by Gopuff Shopify Fulfillment app and the Storefronts Powered by Gopuff theme. The API determines whether a consumer's address falls inside a Gopuff micro-fulfillment center (MFC) delivery zone, exposes real-time product availability at the serving MFC, surfaces Gopuff carrier rates at Shopify checkout, and accepts orders that should be routed to Gopuff for picking, packing, and delivery in roughly 15 to 30 minutes. The canonical entry point is the shops resource wired into the Powered by Gopuff Shopify app embed block. Detailed reference documentation is published by Gopuff as "coming soon"; the surfaces captured here are derived from the partner Help Center and the Powered by Gopuff Shopify theme behavior.
+  version: '1.0'
+  contact:
+    name: Powered by Gopuff Partner Support
+    url: https://poweredby.gopuff.com/
+  termsOfService: https://www.gopuff.com/go/terms-and-conditions
+servers:
+- url: https://fulfillment-api-eus.partners.gopuff.com/shopify/v1
+  description: Production Partner API (US East)
+security:
+- partnerApiKey: []
+tags:
+- name: Orders
+  description: Route completed Shopify checkouts to Gopuff for picking, packing, and last-mile delivery from the nearest MFC.
+paths:
+  /shops/orders:
+    post:
+      operationId: createOrder
+      summary: Route Order to Gopuff
+      description: Routes a completed Shopify checkout to the nearest Gopuff MFC for picking, packing, and delivery. Returns the Gopuff Order ID, which is also written back to the corresponding Shopify order's Additional details panel within 5 to 10 seconds.
+      tags:
+      - Orders
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOrderRequest'
+      responses:
+        '201':
+          description: Order accepted by Gopuff.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '400':
+          description: Invalid order payload.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '422':
+          description: Order rejected (e.g. address out of zone, items out of stock).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /shops/orders/{order_id}:
+    get:
+      operationId: getOrder
+      summary: Get Order
+      description: Returns the current status, fulfillment lifecycle, and tracking information for a Gopuff order. Order status mirrors the realtime fulfillment updates Gopuff pushes to Shopify when the order is out for delivery and when it is delivered.
+      tags:
+      - Orders
+      parameters:
+      - name: order_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Gopuff Order ID.
+      responses:
+        '200':
+          description: Order returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '401':
+          description: Authentication failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Order not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    CreateOrderRequest:
+      type: object
+      description: Mirrors the Shopify order payload submitted to Gopuff. The shipping line must carry "Instant Delivery - Powered by Gopuff" as the title and "Powered By Gopuff" as the source.
+      properties:
+        shopify_order_id:
+          type: string
+        customer:
+          type: object
+          properties:
+            email:
+              type: string
+            phone:
+              type: string
+        shipping_address:
+          $ref: '#/components/schemas/Address'
+        line_items:
+          type: array
+          items:
+            type: object
+            properties:
+              upc:
+                type: string
+              quantity:
+                type: integer
+              price:
+                type: integer
+              currency:
+                type: string
+        shipping_line:
+          type: object
+          properties:
+            title:
+              type: string
+            source:
+              type: string
+      required:
+      - shopify_order_id
+      - shipping_address
+      - line_items
+    Order:
+      type: object
+      properties:
+        gopuff_order_id:
+          type: string
+        shopify_order_id:
+          type: string
+        mfc_id:
+          type: string
+        status:
+          type: string
+          enum:
+          - accepted
+          - picking
+          - out_for_delivery
+          - delivered
+          - cancelled
+        tracking_url:
+          type: string
+          description: Realtime delivery tracking URL surfaced via SMS to the customer.
+        created_at:
+          type: string
+          format: date-time
+        delivered_at:
+          type: string
+          format: date-time
+      required:
+      - gopuff_order_id
+      - status
+    Address:
+      type: object
+      properties:
+        line1:
+          type: string
+        line2:
+          type: string
+        city:
+          type: string
+        region:
+          type: string
+          description: State or province code.
+        postal_code:
+          type: string
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
+      required:
+      - line1
+      - city
+      - postal_code
+      - country
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+      required:
+      - code
+      - message
+  securitySchemes:
+    partnerApiKey:
+      type: apiKey
+      in: header
+      name: X-Gopuff-Partner-Key
+      description: Partner API key issued by Gopuff during onboarding to the Powered by Gopuff platform. Keys are scoped to a single partnership/shop.
+externalDocs:
+  description: Powered by Gopuff Partner Documentation
+  url: https://docs.poweredbygopuff.com/
