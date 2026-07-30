@@ -11,7 +11,20 @@ description: >-
   SDK).
 url: https://raw.githubusercontent.com/api-evangelist/gopuff/refs/heads/main/apis.yml
 humanURL: https://www.gopuff.com
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/gopuff.png
 tags:
   - Quick Commerce
   - Instant Delivery
@@ -25,59 +38,117 @@ modified: '2026-05-23'
 specificationVersion: '0.20'
 type: Contract
 apis:
-  - aid: gopuff:fulfillment-api
-    name: Powered by Gopuff Fulfillment API
-    description: |
-      The Powered by Gopuff Fulfillment API is the partner-facing HTTP surface used by Gopuff's Shopify Fulfillment
-      app and white-labeled Storefronts theme to determine whether a consumer is inside a Gopuff micro-fulfillment
-      center (MFC) delivery zone, to check real-time product availability at the local MFC, to surface carrier
-      rates at Shopify checkout, and to route orders from the merchant's storefront to Gopuff for picking, packing,
-      and delivery. Detailed reference documentation is published as "coming soon" at the partner docs site; the
-      base URL `https://fulfillment-api-eus.partners.gopuff.com/shopify/v1/shops` is wired into the Shopify app
-      embed as the canonical entry point and is the only publicly documented host.
-    humanURL: https://docs.poweredbygopuff.com/
-    baseURL: https://fulfillment-api-eus.partners.gopuff.com/shopify/v1
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    tags:
-      - Fulfillment
-      - Instant Delivery
-      - Shopify
-      - Quick Commerce
-      - Last Mile
-    properties:
-      - type: Documentation
-        url: https://docs.poweredbygopuff.com/
-      - type: Signup
-        url: https://poweredby.gopuff.com/
-      - type: OpenAPI
-        url: openapi/gopuff-fulfillment-openapi.yml
-    contact:
-      - FN: Powered by Gopuff
-        url: https://poweredby.gopuff.com/
-  - aid: gopuff:storefronts-api
-    name: Powered by Gopuff Storefronts API
-    description: |
-      Storefronts Powered by Gopuff is a customizable Shopify theme integrated with Gopuff's catalog and delivery
-      APIs that enables brands to launch a white-labeled DTC website with built-in 15-minute delivery from a
-      Gopuff MFC. The same partner platform exposes three documented integration calls: a delivery-zone check
-      invoked when a customer enters their address, a per-MFC inventory-availability lookup driven by SKU/UPC
-      mapping, and an order-routing call that hands the completed checkout to the nearest MFC for fulfillment.
-      Public reference docs are not yet published; only the operational contract documented in the partner help
-      portal is available.
-    humanURL: https://poweredby.gopuff.com/pages/storefronts
-    baseURL: https://fulfillment-api-eus.partners.gopuff.com/shopify/v1
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    tags:
-      - Storefronts
-      - Shopify
-      - DTC
-      - Quick Commerce
-      - Catalog
-    properties:
-      - type: Documentation
-        url: https://poweredby.gopuff.com/pages/storefronts
-      - type: Signup
-        url: https://poweredby.gopuff.com/
+- aid: gopuff:storefronts-api
+  name: Powered by Gopuff Storefronts API
+  description: >
+    Storefronts Powered by Gopuff is a customizable Shopify theme integrated with Gopuff's catalog and
+    delivery
+
+    APIs that enables brands to launch a white-labeled DTC website with built-in 15-minute delivery from
+    a
+
+    Gopuff MFC. The same partner platform exposes three documented integration calls: a delivery-zone
+    check
+
+    invoked when a customer enters their address, a per-MFC inventory-availability lookup driven by SKU/UPC
+
+    mapping, and an order-routing call that hands the completed checkout to the nearest MFC for fulfillment.
+
+    Public reference docs are not yet published; only the operational contract documented in the partner
+    help
+
+    portal is available.
+  humanURL: https://poweredby.gopuff.com/pages/storefronts
+  baseURL: https://fulfillment-api-eus.partners.gopuff.com/shopify/v1
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  tags:
+  - Storefronts
+  - Shopify
+  - DTC
+  - Quick Commerce
+  - Catalog
+  properties:
+  - type: Documentation
+    url: https://poweredby.gopuff.com/pages/storefronts
+  - type: Signup
+    url: https://poweredby.gopuff.com/
+- aid: gopuff:gopuff-availability-api
+  name: Gopuff Availability API
+  description: >-
+    Look up real-time product availability at the Gopuff MFC servicing a given customer location.
+  humanURL: https://docs.poweredbygopuff.com/
+  baseURL: https://fulfillment-api-eus.partners.gopuff.com/shopify/v1
+  tags:
+  - Availability
+  properties:
+  - type: OpenAPI
+    url: openapi/gopuff-availability-api-openapi.yml
+  - type: Documentation
+    url: https://docs.poweredbygopuff.com/
+  - type: Signup
+    url: https://poweredby.gopuff.com/
+- aid: gopuff:gopuff-orders-api
+  name: Gopuff Orders API
+  description: >-
+    Route completed Shopify checkouts to Gopuff for picking, packing, and last-mile delivery from the
+    nearest MFC.
+  humanURL: https://docs.poweredbygopuff.com/
+  baseURL: https://fulfillment-api-eus.partners.gopuff.com/shopify/v1
+  tags:
+  - Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/gopuff-orders-api-openapi.yml
+  - type: Documentation
+    url: https://docs.poweredbygopuff.com/
+  - type: Signup
+    url: https://poweredby.gopuff.com/
+- aid: gopuff:gopuff-rates-api
+  name: Gopuff Rates API
+  description: >-
+    Return Gopuff Instant Delivery carrier rates for a Shopify checkout, alongside the merchant's standard
+    shipping options.
+  humanURL: https://docs.poweredbygopuff.com/
+  baseURL: https://fulfillment-api-eus.partners.gopuff.com/shopify/v1
+  tags:
+  - Rates
+  properties:
+  - type: OpenAPI
+    url: openapi/gopuff-rates-api-openapi.yml
+  - type: Documentation
+    url: https://docs.poweredbygopuff.com/
+  - type: Signup
+    url: https://poweredby.gopuff.com/
+- aid: gopuff:gopuff-shops-api
+  name: Gopuff Shops API
+  description: Manage the binding between a partner Shopify shop and the Powered by Gopuff partnership.
+  humanURL: https://docs.poweredbygopuff.com/
+  baseURL: https://fulfillment-api-eus.partners.gopuff.com/shopify/v1
+  tags:
+  - Shops
+  properties:
+  - type: OpenAPI
+    url: openapi/gopuff-shops-api-openapi.yml
+  - type: Documentation
+    url: https://docs.poweredbygopuff.com/
+  - type: Signup
+    url: https://poweredby.gopuff.com/
+- aid: gopuff:gopuff-zones-api
+  name: Gopuff Zones API
+  description: >-
+    Check whether a consumer address or IP location falls inside a Gopuff micro-fulfillment center (MFC)
+    delivery zone.
+  humanURL: https://docs.poweredbygopuff.com/
+  baseURL: https://fulfillment-api-eus.partners.gopuff.com/shopify/v1
+  tags:
+  - Zones
+  properties:
+  - type: OpenAPI
+    url: openapi/gopuff-zones-api-openapi.yml
+  - type: Documentation
+    url: https://docs.poweredbygopuff.com/
+  - type: Signup
+    url: https://poweredby.gopuff.com/
 common:
   - type: AgenticAccess
     url: agentic-access/gopuff-agentic-access.yml
