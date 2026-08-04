@@ -1,0 +1,22 @@
+{
+  "provider": "gopuff",
+  "sources": [
+    "gopuff-availability-api-openapi.yml",
+    "gopuff-orders-api-openapi.yml",
+    "gopuff-rates-api-openapi.yml",
+    "gopuff-shops-api-openapi.yml",
+    "gopuff-zones-api-openapi.yml"
+  ],
+  "outputs": [
+    "gopuff-availability-api-openapi.yml",
+    "gopuff-orders-api-openapi.yml",
+    "gopuff-rates-api-openapi.yml",
+    "gopuff-shops-api-openapi.yml",
+    "gopuff-zones-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
