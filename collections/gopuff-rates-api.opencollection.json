@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Powered by Gopuff Fulfillment Availability Rates API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Gopuff-Partner-Key",
+      "value": "{{X-Gopuff-Partner-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Rates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Carrier Rates",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://fulfillment-api-eus.partners.gopuff.com/shopify/v1/shops/rates",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns Gopuff Instant Delivery carrier rates for a Shopify checkout. Invoked by the Shopify Carrier Service framework. Rates are pre-negotiated and set by the partner's Gopuff agreement; merchants are not allowed to add handling fees on top of the returned rates."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

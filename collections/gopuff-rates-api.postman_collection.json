@@ -1,0 +1,254 @@
+{
+  "item": [
+    {
+      "id": "c7d6a216-b919-4be8-96c2-deecbe686327",
+      "name": "Rates",
+      "description": {
+        "content": "Return Gopuff Instant Delivery carrier rates for a Shopify checkout, alongside the merchant's standard shipping options.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "77d05eca-95af-41a4-ac0d-e30193de6adb",
+          "name": "Get Carrier Rates",
+          "request": {
+            "name": "Get Carrier Rates",
+            "description": {
+              "content": "Returns Gopuff Instant Delivery carrier rates for a Shopify checkout. Invoked by the Shopify Carrier Service framework. Rates are pre-negotiated and set by the partner's Gopuff agreement; merchants are not allowed to add handling fees on top of the returned rates.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "shops",
+                "rates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"shipping_address\": {\n    \"line1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country\": \"<string>\",\n    \"line2\": \"<string>\",\n    \"region\": \"<string>\"\n  },\n  \"items\": [\n    {\n      \"upc\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"upc\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f58bb1d1-2ad5-4db2-8708-c1cb62d3656e",
+              "name": "Rates returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shops",
+                    "rates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Gopuff-Partner-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shipping_address\": {\n    \"line1\": \"string\",\n    \"city\": \"string\",\n    \"postal_code\": \"string\",\n    \"country\": \"string\",\n    \"line2\": \"string\",\n    \"region\": \"string\"\n  },\n  \"items\": [\n    {\n      \"upc\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"upc\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"rates\": [\n    {\n      \"service_name\": \"string\",\n      \"service_code\": \"string\",\n      \"total_price\": 794,\n      \"currency\": \"string\",\n      \"min_delivery_minutes\": 751,\n      \"max_delivery_minutes\": 935\n    },\n    {\n      \"service_name\": \"string\",\n      \"service_code\": \"string\",\n      \"total_price\": 2268,\n      \"currency\": \"string\",\n      \"min_delivery_minutes\": 3321,\n      \"max_delivery_minutes\": 2315\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ae734db2-1488-4611-a26f-ccae60f2a59a",
+              "name": "Invalid request body.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shops",
+                    "rates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Gopuff-Partner-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shipping_address\": {\n    \"line1\": \"string\",\n    \"city\": \"string\",\n    \"postal_code\": \"string\",\n    \"country\": \"string\",\n    \"line2\": \"string\",\n    \"region\": \"string\"\n  },\n  \"items\": [\n    {\n      \"upc\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"upc\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"request_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f8de63ef-fe4a-4676-a90a-1cd2579548df",
+              "name": "Authentication failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shops",
+                    "rates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Gopuff-Partner-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shipping_address\": {\n    \"line1\": \"string\",\n    \"city\": \"string\",\n    \"postal_code\": \"string\",\n    \"country\": \"string\",\n    \"line2\": \"string\",\n    \"region\": \"string\"\n  },\n  \"items\": [\n    {\n      \"upc\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"upc\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"request_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://fulfillment-api-eus.partners.gopuff.com/shopify/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Gopuff-Partner-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "34daa971-718f-4e1e-97af-78605a44e8e0",
+    "name": "Powered by Gopuff Fulfillment Availability Rates API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Partner-facing API powering the Powered by Gopuff Shopify Fulfillment app and the Storefronts Powered by Gopuff theme. The API determines whether a consumer's address falls inside a Gopuff micro-fulfillment center (MFC) delivery zone, exposes real-time product availability at the serving MFC, surfaces Gopuff carrier rates at Shopify checkout, and accepts orders that should be routed to Gopuff for picking, packing, and delivery in roughly 15 to 30 minutes. The canonical entry point is the shops resource wired into the Powered by Gopuff Shopify app embed block. Detailed reference documentation is published by Gopuff as \"coming soon\"; the surfaces captured here are derived from the partner Help Center and the Powered by Gopuff Shopify theme behavior.\n\nContact Support:\n Name: Powered by Gopuff Partner Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Powered by Gopuff Fulfillment Availability Zones API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Gopuff-Partner-Key",
+      "value": "{{X-Gopuff-Partner-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Zones",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Check Delivery Zone Eligibility",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://fulfillment-api-eus.partners.gopuff.com/shopify/v1/shops/zones/check",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Determines whether a customer location is inside a Gopuff MFC delivery zone. Either an address or a coarse IP location can be supplied. When the customer is in zone, the response includes the serving MFC identifier and the eligible product collection so the Powered by Gopuff Shopify theme can selectively enable instant delivery messaging."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

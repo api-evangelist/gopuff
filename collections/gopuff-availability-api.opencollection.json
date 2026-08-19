@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Powered by Gopuff Fulfillment Availability API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Gopuff-Partner-Key",
+      "value": "{{X-Gopuff-Partner-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Availability",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Product Availability",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://fulfillment-api-eus.partners.gopuff.com/shopify/v1/shops/availability",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns real-time product availability at the Gopuff MFC servicing a given customer location. Products are matched via UPC mapped to the Gopuff catalog during partner onboarding; only items in the partner's curated instant-delivery collection are checked."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

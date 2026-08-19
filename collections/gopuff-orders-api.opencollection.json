@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Powered by Gopuff Fulfillment Availability Orders API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Gopuff-Partner-Key",
+      "value": "{{X-Gopuff-Partner-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Route Order to Gopuff",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://fulfillment-api-eus.partners.gopuff.com/shopify/v1/shops/orders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Routes a completed Shopify checkout to the nearest Gopuff MFC for picking, packing, and delivery. Returns the Gopuff Order ID, which is also written back to the corresponding Shopify order's Additional details panel within 5 to 10 seconds."
+        },
+        {
+          "info": {
+            "name": "Get Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fulfillment-api-eus.partners.gopuff.com/shopify/v1/shops/orders/:order_id",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "Gopuff Order ID."
+              }
+            ]
+          },
+          "docs": "Returns the current status, fulfillment lifecycle, and tracking information for a Gopuff order. Order status mirrors the realtime fulfillment updates Gopuff pushes to Shopify when the order is out for delivery and when it is delivered."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

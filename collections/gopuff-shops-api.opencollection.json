@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Powered by Gopuff Fulfillment Availability Shops API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Gopuff-Partner-Key",
+      "value": "{{X-Gopuff-Partner-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Shops",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Partner Shop Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fulfillment-api-eus.partners.gopuff.com/shopify/v1/shops"
+          },
+          "docs": "Returns the partnership status, configured shop metadata, and serving region for the authenticated partner Shopify shop."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

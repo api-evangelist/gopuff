@@ -1,0 +1,213 @@
+{
+  "item": [
+    {
+      "id": "65466a28-8a43-4872-a81c-da398e666ec0",
+      "name": "Shops",
+      "description": {
+        "content": "Manage the binding between a partner Shopify shop and the Powered by Gopuff partnership.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "be82faf9-e48d-4fc9-9f4e-5af46c903c99",
+          "name": "Get Partner Shop Status",
+          "request": {
+            "name": "Get Partner Shop Status",
+            "description": {
+              "content": "Returns the partnership status, configured shop metadata, and serving region for the authenticated partner Shopify shop.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "shops"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a09395e7-38d5-4286-9870-643dc9f101db",
+              "name": "Shop record found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shops"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Gopuff-Partner-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"shop_id\": \"string\",\n  \"shopify_shop_domain\": \"string\",\n  \"partnership_status\": \"activated\",\n  \"region\": \"string\",\n  \"availability_threshold\": 2431\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b7bdaaa6-e34d-4f63-a21f-d38523bb771e",
+              "name": "Authentication failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shops"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Gopuff-Partner-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"request_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d4e4842a-f392-46c3-807f-08b85cb0e50e",
+              "name": "No shop found for the provided credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shops"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Gopuff-Partner-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"request_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://fulfillment-api-eus.partners.gopuff.com/shopify/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Gopuff-Partner-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "462db30f-d4be-4136-b9d3-e3cfa663d13e",
+    "name": "Powered by Gopuff Fulfillment Availability Shops API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Partner-facing API powering the Powered by Gopuff Shopify Fulfillment app and the Storefronts Powered by Gopuff theme. The API determines whether a consumer's address falls inside a Gopuff micro-fulfillment center (MFC) delivery zone, exposes real-time product availability at the serving MFC, surfaces Gopuff carrier rates at Shopify checkout, and accepts orders that should be routed to Gopuff for picking, packing, and delivery in roughly 15 to 30 minutes. The canonical entry point is the shops resource wired into the Powered by Gopuff Shopify app embed block. Detailed reference documentation is published by Gopuff as \"coming soon\"; the surfaces captured here are derived from the partner Help Center and the Powered by Gopuff Shopify theme behavior.\n\nContact Support:\n Name: Powered by Gopuff Partner Support",
+      "type": "text/plain"
+    }
+  }
+}
