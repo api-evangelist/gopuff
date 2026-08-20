@@ -64,6 +64,12 @@ apis:
   tags:
   - Storefronts
   - Shopify
+  - Direct to Consumer
+  - Quick Commerce
+  - Catalog
+  tags_raw:
+  - Storefronts
+  - Shopify
   - DTC
   - Quick Commerce
   - Catalog
@@ -95,6 +101,8 @@ apis:
   humanURL: https://docs.poweredbygopuff.com/
   baseURL: https://fulfillment-api-eus.partners.gopuff.com/shopify/v1
   tags:
+  - Order
+  tags_raw:
   - Orders
   properties:
   - type: OpenAPI
