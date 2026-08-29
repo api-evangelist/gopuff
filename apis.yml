@@ -170,6 +170,9 @@ apis:
   - type: Signup
     url: https://poweredby.gopuff.com/
 common:
+  - type: CapabilityMap
+    url: capabilities/gopuff-capability-edges.yml
+    name: Gopuff Business Capability Map
   - type: AgenticAccess
     url: agentic-access/gopuff-agentic-access.yml
   - type: DomainSecurity
