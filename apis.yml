@@ -75,7 +75,7 @@ apis:
   baseURL: https://fulfillment-api-eus.partners.gopuff.com/shopify/v1
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   tags:
-  - Storefronts
+  - Storefront
   - Shopify
   - Direct to Consumer
   - Quick Commerce
