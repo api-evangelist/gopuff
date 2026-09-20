@@ -11,7 +11,7 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 1
+edge_count: 2
 edges:
 - tag: Orders
   spec_file: gopuff-orders-api-openapi.yml
@@ -23,3 +23,15 @@ edges:
     to Gopuff for picking, packing, and delivery"
   reason: Accepting and routing partner orders to a fulfillment node for picking, packing and delivery
     is order fulfilment orchestration.
+- tag: Availability
+  spec_file: gopuff-availability-api-openapi.yml
+  capability_id: BC-2330.30
+  capability_id_l1: BC-2330
+  capability_name: Distributed Order Fulfilment Management
+  confidence: 0.7
+  evidence: POST /shops/availability  Get Product Availability; "exposes real-time product availability
+    at the serving MFC"
+  reason: Real-time availability of product at the serving micro-fulfilment centre for a consumer address
+    — inventory-to-promise from a distributed fulfilment node. Could also read as inventory allocation,
+    so moderate confidence.
+  recovered_from: vertical-retail-consumer-goods-edges.json
