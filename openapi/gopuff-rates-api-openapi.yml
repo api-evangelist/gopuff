@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Powered by Gopuff Fulfillment Availability Rates API
-  description: Partner-facing API powering the Powered by Gopuff Shopify Fulfillment app and the Storefronts Powered by Gopuff theme. The API determines whether a consumer's address falls inside a Gopuff micro-fulfillment center (MFC) delivery zone, exposes real-time product availability at the serving MFC, surfaces Gopuff carrier rates at Shopify checkout, and accepts orders that should be routed to Gopuff for picking, packing, and delivery in roughly 15 to 30 minutes. The canonical entry point is the shops resource wired into the Powered by Gopuff Shopify app embed block. Detailed reference documentation is published by Gopuff as "coming soon"; the surfaces captured here are derived from the partner Help Center and the Powered by Gopuff Shopify theme behavior.
+  title: Powered by Gopuff Fulfillment Rates API
+  description: Partner-facing API powering the Powered by Gopuff Shopify Fulfillment app and the Storefronts Powered by Gopuff theme.
   version: '1.0'
   contact:
     name: Powered by Gopuff Partner Support
@@ -50,57 +50,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-      required:
-      - code
-      - message
-    CarrierRateResponse:
-      type: object
-      properties:
-        rates:
-          type: array
-          items:
-            $ref: '#/components/schemas/CarrierRate'
-    CarrierRateRequest:
-      type: object
-      properties:
-        shipping_address:
-          $ref: '#/components/schemas/Address'
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              upc:
-                type: string
-              quantity:
-                type: integer
-    CarrierRate:
-      type: object
-      properties:
-        service_name:
-          type: string
-          description: Always "Instant Delivery - Powered by Gopuff" for Gopuff rates.
-        service_code:
-          type: string
-        total_price:
-          type: integer
-          description: Rate in the smallest currency unit (e.g. cents).
-        currency:
-          type: string
-          description: ISO 4217 currency code.
-        min_delivery_minutes:
-          type: integer
-        max_delivery_minutes:
-          type: integer
     Address:
       type: object
       properties:
@@ -123,6 +72,57 @@ components:
       - city
       - postal_code
       - country
+    CarrierRateResponse:
+      type: object
+      properties:
+        rates:
+          type: array
+          items:
+            $ref: '#/components/schemas/CarrierRate'
+    CarrierRate:
+      type: object
+      properties:
+        service_name:
+          type: string
+          description: Always "Instant Delivery - Powered by Gopuff" for Gopuff rates.
+        service_code:
+          type: string
+        total_price:
+          type: integer
+          description: Rate in the smallest currency unit (e.g. cents).
+        currency:
+          type: string
+          description: ISO 4217 currency code.
+        min_delivery_minutes:
+          type: integer
+        max_delivery_minutes:
+          type: integer
+    CarrierRateRequest:
+      type: object
+      properties:
+        shipping_address:
+          $ref: '#/components/schemas/Address'
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              upc:
+                type: string
+              quantity:
+                type: integer
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+      required:
+      - code
+      - message
   securitySchemes:
     partnerApiKey:
       type: apiKey
