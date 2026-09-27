@@ -50,20 +50,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    ZoneCheckRequest:
-      type: object
-      properties:
-        address:
-          $ref: '#/components/schemas/Address'
-        ip_address:
-          type: string
-          description: Customer IP address used for coarse zone eligibility before address entry.
-        latitude:
-          type: number
-          format: double
-        longitude:
-          type: number
-          format: double
     Address:
       type: object
       properties:
@@ -86,6 +72,18 @@ components:
       - city
       - postal_code
       - country
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+      required:
+      - code
+      - message
     ZoneCheckResponse:
       type: object
       properties:
@@ -103,18 +101,20 @@ components:
           description: Upper bound of the expected delivery window in minutes.
       required:
       - in_zone
-    Error:
+    ZoneCheckRequest:
       type: object
       properties:
-        code:
+        address:
+          $ref: '#/components/schemas/Address'
+        ip_address:
           type: string
-        message:
-          type: string
-        request_id:
-          type: string
-      required:
-      - code
-      - message
+          description: Customer IP address used for coarse zone eligibility before address entry.
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
   securitySchemes:
     partnerApiKey:
       type: apiKey

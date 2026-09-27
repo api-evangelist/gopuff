@@ -50,6 +50,21 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    AvailabilityRequest:
+      type: object
+      properties:
+        address:
+          $ref: '#/components/schemas/Address'
+        mfc_id:
+          type: string
+          description: Optional MFC override if previously resolved via the zone check.
+        upcs:
+          type: array
+          description: List of UPCs to check against the local MFC inventory.
+          items:
+            type: string
+      required:
+      - upcs
     Address:
       type: object
       properties:
@@ -72,21 +87,29 @@ components:
       - city
       - postal_code
       - country
-    AvailabilityRequest:
+    Error:
       type: object
       properties:
-        address:
-          $ref: '#/components/schemas/Address'
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+      required:
+      - code
+      - message
+    AvailabilityResponse:
+      type: object
+      properties:
         mfc_id:
           type: string
-          description: Optional MFC override if previously resolved via the zone check.
-        upcs:
+        items:
           type: array
-          description: List of UPCs to check against the local MFC inventory.
           items:
-            type: string
+            $ref: '#/components/schemas/ProductAvailability'
       required:
-      - upcs
+      - items
     ProductAvailability:
       type: object
       properties:
@@ -100,29 +123,6 @@ components:
       required:
       - upc
       - available
-    AvailabilityResponse:
-      type: object
-      properties:
-        mfc_id:
-          type: string
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProductAvailability'
-      required:
-      - items
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-      required:
-      - code
-      - message
   securitySchemes:
     partnerApiKey:
       type: apiKey

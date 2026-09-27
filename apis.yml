@@ -41,6 +41,14 @@ image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/gopuff.png
 tags:
   - Quick Commerce
   - Instant Delivery
+  - Last Mile Delivery
+  - Grocery
+  - Fulfillment
+  - Retail
+  - Logistics
+tags_raw:
+  - Quick Commerce
+  - Instant Delivery
   - Last Mile
   - Grocery
   - Fulfillment

@@ -50,6 +50,13 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    CarrierRateResponse:
+      type: object
+      properties:
+        rates:
+          type: array
+          items:
+            $ref: '#/components/schemas/CarrierRate'
     Address:
       type: object
       properties:
@@ -72,31 +79,6 @@ components:
       - city
       - postal_code
       - country
-    CarrierRateResponse:
-      type: object
-      properties:
-        rates:
-          type: array
-          items:
-            $ref: '#/components/schemas/CarrierRate'
-    CarrierRate:
-      type: object
-      properties:
-        service_name:
-          type: string
-          description: Always "Instant Delivery - Powered by Gopuff" for Gopuff rates.
-        service_code:
-          type: string
-        total_price:
-          type: integer
-          description: Rate in the smallest currency unit (e.g. cents).
-        currency:
-          type: string
-          description: ISO 4217 currency code.
-        min_delivery_minutes:
-          type: integer
-        max_delivery_minutes:
-          type: integer
     CarrierRateRequest:
       type: object
       properties:
@@ -123,6 +105,24 @@ components:
       required:
       - code
       - message
+    CarrierRate:
+      type: object
+      properties:
+        service_name:
+          type: string
+          description: Always "Instant Delivery - Powered by Gopuff" for Gopuff rates.
+        service_code:
+          type: string
+        total_price:
+          type: integer
+          description: Rate in the smallest currency unit (e.g. cents).
+        currency:
+          type: string
+          description: ISO 4217 currency code.
+        min_delivery_minutes:
+          type: integer
+        max_delivery_minutes:
+          type: integer
   securitySchemes:
     partnerApiKey:
       type: apiKey
