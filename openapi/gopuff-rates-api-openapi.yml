@@ -50,6 +50,18 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+      required:
+      - code
+      - message
     CarrierRateResponse:
       type: object
       properties:
@@ -93,18 +105,6 @@ components:
                 type: string
               quantity:
                 type: integer
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-      required:
-      - code
-      - message
     CarrierRate:
       type: object
       properties:

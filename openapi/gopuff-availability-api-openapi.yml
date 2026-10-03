@@ -50,6 +50,42 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    ProductAvailability:
+      type: object
+      properties:
+        upc:
+          type: string
+        available:
+          type: boolean
+        quantity_on_hand:
+          type: integer
+          description: Approximate units available at the serving MFC.
+      required:
+      - upc
+      - available
+    AvailabilityResponse:
+      type: object
+      properties:
+        mfc_id:
+          type: string
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductAvailability'
+      required:
+      - items
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+      required:
+      - code
+      - message
     AvailabilityRequest:
       type: object
       properties:
@@ -87,42 +123,6 @@ components:
       - city
       - postal_code
       - country
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-      required:
-      - code
-      - message
-    AvailabilityResponse:
-      type: object
-      properties:
-        mfc_id:
-          type: string
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProductAvailability'
-      required:
-      - items
-    ProductAvailability:
-      type: object
-      properties:
-        upc:
-          type: string
-        available:
-          type: boolean
-        quantity_on_hand:
-          type: integer
-          description: Approximate units available at the serving MFC.
-      required:
-      - upc
-      - available
   securitySchemes:
     partnerApiKey:
       type: apiKey

@@ -89,69 +89,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Address:
-      type: object
-      properties:
-        line1:
-          type: string
-        line2:
-          type: string
-        city:
-          type: string
-        region:
-          type: string
-          description: State or province code.
-        postal_code:
-          type: string
-        country:
-          type: string
-          description: ISO 3166-1 alpha-2 country code.
-      required:
-      - line1
-      - city
-      - postal_code
-      - country
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-      required:
-      - code
-      - message
-    Order:
-      type: object
-      properties:
-        gopuff_order_id:
-          type: string
-        shopify_order_id:
-          type: string
-        mfc_id:
-          type: string
-        status:
-          type: string
-          enum:
-          - accepted
-          - picking
-          - out_for_delivery
-          - delivered
-          - cancelled
-        tracking_url:
-          type: string
-          description: Realtime delivery tracking URL surfaced via SMS to the customer.
-        created_at:
-          type: string
-          format: date-time
-        delivered_at:
-          type: string
-          format: date-time
-      required:
-      - gopuff_order_id
-      - status
     CreateOrderRequest:
       type: object
       description: Mirrors the Shopify order payload submitted to Gopuff. The shipping line must carry "Instant Delivery - Powered by Gopuff" as the title and "Powered By Gopuff" as the source.
@@ -191,6 +128,69 @@ components:
       - shopify_order_id
       - shipping_address
       - line_items
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+      required:
+      - code
+      - message
+    Address:
+      type: object
+      properties:
+        line1:
+          type: string
+        line2:
+          type: string
+        city:
+          type: string
+        region:
+          type: string
+          description: State or province code.
+        postal_code:
+          type: string
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
+      required:
+      - line1
+      - city
+      - postal_code
+      - country
+    Order:
+      type: object
+      properties:
+        gopuff_order_id:
+          type: string
+        shopify_order_id:
+          type: string
+        mfc_id:
+          type: string
+        status:
+          type: string
+          enum:
+          - accepted
+          - picking
+          - out_for_delivery
+          - delivered
+          - cancelled
+        tracking_url:
+          type: string
+          description: Realtime delivery tracking URL surfaced via SMS to the customer.
+        created_at:
+          type: string
+          format: date-time
+        delivered_at:
+          type: string
+          format: date-time
+      required:
+      - gopuff_order_id
+      - status
   securitySchemes:
     partnerApiKey:
       type: apiKey
