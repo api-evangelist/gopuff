@@ -50,19 +50,21 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    ProductAvailability:
+    AvailabilityRequest:
       type: object
       properties:
-        upc:
+        address:
+          $ref: '#/components/schemas/Address'
+        mfc_id:
           type: string
-        available:
-          type: boolean
-        quantity_on_hand:
-          type: integer
-          description: Approximate units available at the serving MFC.
+          description: Optional MFC override if previously resolved via the zone check.
+        upcs:
+          type: array
+          description: List of UPCs to check against the local MFC inventory.
+          items:
+            type: string
       required:
-      - upc
-      - available
+      - upcs
     AvailabilityResponse:
       type: object
       properties:
@@ -86,21 +88,6 @@ components:
       required:
       - code
       - message
-    AvailabilityRequest:
-      type: object
-      properties:
-        address:
-          $ref: '#/components/schemas/Address'
-        mfc_id:
-          type: string
-          description: Optional MFC override if previously resolved via the zone check.
-        upcs:
-          type: array
-          description: List of UPCs to check against the local MFC inventory.
-          items:
-            type: string
-      required:
-      - upcs
     Address:
       type: object
       properties:
@@ -123,6 +110,19 @@ components:
       - city
       - postal_code
       - country
+    ProductAvailability:
+      type: object
+      properties:
+        upc:
+          type: string
+        available:
+          type: boolean
+        quantity_on_hand:
+          type: integer
+          description: Approximate units available at the serving MFC.
+      required:
+      - upc
+      - available
   securitySchemes:
     partnerApiKey:
       type: apiKey

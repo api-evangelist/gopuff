@@ -50,6 +50,13 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    CarrierRateResponse:
+      type: object
+      properties:
+        rates:
+          type: array
+          items:
+            $ref: '#/components/schemas/CarrierRate'
     Error:
       type: object
       properties:
@@ -62,13 +69,6 @@ components:
       required:
       - code
       - message
-    CarrierRateResponse:
-      type: object
-      properties:
-        rates:
-          type: array
-          items:
-            $ref: '#/components/schemas/CarrierRate'
     Address:
       type: object
       properties:
@@ -91,20 +91,6 @@ components:
       - city
       - postal_code
       - country
-    CarrierRateRequest:
-      type: object
-      properties:
-        shipping_address:
-          $ref: '#/components/schemas/Address'
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              upc:
-                type: string
-              quantity:
-                type: integer
     CarrierRate:
       type: object
       properties:
@@ -123,6 +109,20 @@ components:
           type: integer
         max_delivery_minutes:
           type: integer
+    CarrierRateRequest:
+      type: object
+      properties:
+        shipping_address:
+          $ref: '#/components/schemas/Address'
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              upc:
+                type: string
+              quantity:
+                type: integer
   securitySchemes:
     partnerApiKey:
       type: apiKey

@@ -44,6 +44,18 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+      required:
+      - code
+      - message
     Shop:
       type: object
       properties:
@@ -70,18 +82,6 @@ components:
       - shop_id
       - shopify_shop_domain
       - partnership_status
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-      required:
-      - code
-      - message
   securitySchemes:
     partnerApiKey:
       type: apiKey
