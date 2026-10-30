@@ -1,4 +1,4 @@
-# Gopuff (gopuff)
+# Gopuff
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,114 +66,167 @@
 
 Gopuff is a private quick-commerce company headquartered in Philadelphia that operates its own network of micro-fulfillment centers to deliver everyday essentials — snacks, beverages, household goods, fresh items, alcohol, and over-the-counter medicines — to consumers in roughly 15 to 30 minutes. Beyond its direct-to-consumer mobile app and website, Gopuff exposes its instant-delivery infrastructure to brands and retailers through the Powered by Gopuff platform, which offers a Shopify Fulfillment app, a white-labeled Storefronts theme, and a partner Developer Portal backed by HTTP APIs (e.g. fulfillment-api-eus.partners.gopuff.com). Gopuff also operates a Delivery Partner program with its own driver pay portal, scheduling UI, and ID-scanning flow (alcohol delivery uses the Microblink BlinkID SDK).
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/gopuff/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/gopuff/refs/heads/main/apis.yml)
+**Areas:** Quick Commerce · Instant Delivery · Last Mile Delivery · Grocery · Fulfillment · Retail · Logistics
 
-## Scope
+## Gopuff on APIs.io
 
-- **Type:** Contract
+Everything profiled for Gopuff is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/gopuff/](https://apis.io/providers/gopuff/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (6)
 
-- Quick Commerce
-- Instant Delivery
-- Last Mile
-- Grocery
-- Fulfillment
-- Retail
-- Logistics
+- [Powered by Gopuff Storefronts API](https://apis.io/apis/gopuff/storefronts-api/) — Storefronts Powered by Gopuff is a customizable Shopify theme integrated with Gopuff's catalog and delivery APIs that enables brands to launch a…
+- [Gopuff Availability API](https://apis.io/apis/gopuff/gopuff-availability-api/) — Look up real-time product availability at the Gopuff MFC servicing a given customer location.
+- [Gopuff Orders API](https://apis.io/apis/gopuff/gopuff-orders-api/) — Route completed Shopify checkouts to Gopuff for picking, packing, and last-mile delivery from the nearest MFC.
+- [Gopuff Rates API](https://apis.io/apis/gopuff/gopuff-rates-api/) — Return Gopuff Instant Delivery carrier rates for a Shopify checkout, alongside the merchant's standard shipping options.
+- [Gopuff Shops API](https://apis.io/apis/gopuff/gopuff-shops-api/) — Manage the binding between a partner Shopify shop and the Powered by Gopuff partnership.
+- [Gopuff Zones API](https://apis.io/apis/gopuff/gopuff-zones-api/) — Check whether a consumer address or IP location falls inside a Gopuff micro-fulfillment center (MFC) delivery zone.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-05-22
-- **Modified:** 2026-05-23
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Powered by Gopuff Fulfillment API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-The Powered by Gopuff Fulfillment API is the partner-facing HTTP surface used by Gopuff's Shopify Fulfillment
-app and white-labeled Storefronts theme to determine whether a consumer is inside a Gopuff micro-fulfillment
-center (MFC) delivery zone, to check real-time product availability at the local MFC, to surface carrier
-rates at Shopify checkout, and to route orders from the merchant's storefront to Gopuff for picking, packing,
-and delivery. Detailed reference documentation is published as "coming soon" at the partner docs site; the
-base URL `https://fulfillment-api-eus.partners.gopuff.com/shopify/v1/shops` is wired into the Shopify app
-embed as the canonical entry point and is the only publicly documented host.
+- [Gopuff Agentic Access](https://apis.io/agentic-access/gopuff/gopuff-agentic-access/)
 
-- **Human URL:** [https://docs.poweredbygopuff.com/](https://docs.poweredbygopuff.com/)
-- **Base URL:** `https://fulfillment-api-eus.partners.gopuff.com/shopify/v1`
+#### JSON Schema (3)
 
-#### Tags
+The data models the API reads and writes.
 
-- Fulfillment
-- Instant Delivery
-- Shopify
-- Quick Commerce
-- Last Mile
+- [Gopuff Delivery Zone Check](https://apis.io/schemas/gopuff/gopuff-delivery-zone/)
+- [Gopuff Order](https://apis.io/schemas/gopuff/gopuff-order/)
+- [Gopuff Product Availability](https://apis.io/schemas/gopuff/gopuff-product-availability/)
 
-#### Properties
+#### JSON Structure (1)
 
-- [Documentation](https://docs.poweredbygopuff.com/)
-- [Sign Up](https://poweredby.gopuff.com/)
-- [OpenAPI](openapi/gopuff-fulfillment-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/gopuff-fulfillment.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/gopuff-fulfillment.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Data models expressed in JSON Structure.
 
-### Powered by Gopuff Storefronts API
+- [Gopuff Order Structure](https://apis.io/json-structure/gopuff/gopuff-order-structure/)
 
-Storefronts Powered by Gopuff is a customizable Shopify theme integrated with Gopuff's catalog and delivery
-APIs that enables brands to launch a white-labeled DTC website with built-in 15-minute delivery from a
-Gopuff MFC. The same partner platform exposes three documented integration calls: a delivery-zone check
-invoked when a customer enters their address, a per-MFC inventory-availability lookup driven by SKU/UPC
-mapping, and an order-routing call that hands the completed checkout to the nearest MFC for fulfillment.
-Public reference docs are not yet published; only the operational contract documented in the partner help
-portal is available.
+#### JSON-LD (1)
 
-- **Human URL:** [https://poweredby.gopuff.com/pages/storefronts](https://poweredby.gopuff.com/pages/storefronts)
-- **Base URL:** `https://fulfillment-api-eus.partners.gopuff.com/shopify/v1`
+Linked-data contexts for the provider's vocabulary.
 
-#### Tags
+- [Gopuff Context](https://apis.io/jsonld/gopuff/gopuff-context/)
 
-- Storefronts
-- Shopify
-- DTC
-- Quick Commerce
-- Catalog
+#### Vocabulary (1)
 
-#### Properties
+The provider's domain terms, defined.
 
-- [Documentation](https://poweredby.gopuff.com/pages/storefronts)
-- [Sign Up](https://poweredby.gopuff.com/)
-- [Postman Collection](collections/gopuff-fulfillment.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/gopuff-fulfillment.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Gopuff Domain Vocabulary](https://apis.io/vocabularies/gopuff/gopuff-vocabulary/)
 
-## Common Properties
+#### Examples (5)
 
-- [Homepage](https://www.gopuff.com)
-- [Newsroom](https://www.gopuff.com/newsroom)
-- [Careers](https://www.gopuff.com/go/careers)
-- [Help Center](https://help.gopuff.com/)
-- [Partner Portal](https://poweredby.gopuff.com/)
-- [Partner Documentation](https://docs.poweredbygopuff.com/)
-- [Developer Portal](https://devportaldocs.poweredbygopuff.com/)
-- [Shopify App](https://apps.shopify.com/powered-by-gopuff)
-- [Delivery Partner Sign Up](https://deliver.gopuff.com/signup)
-- [Delivery Partner Pay Portal](https://driver-pay.gopuff.com/)
-- [Delivery Partner Scheduling](https://driver-scheduling-manager-ui.delivery-tech.gopuff.com/)
-- [Driver App](https://www.gopuff.com/go/apps)
-- [Google Play Driver App](https://play.google.com/store/apps/details?id=com.gopuff.godrive2.live)
-- [GitHub Organization](https://github.com/gopuff)
-- [LinkedIn](https://www.linkedin.com/company/gopuff)
-- [JSON-LD](json-ld/gopuff-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [JSON Schema](json-schema/gopuff-delivery-zone-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/gopuff-product-availability-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/gopuff-order-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [Vocabulary](vocabulary/gopuff-vocabulary.yml)
-- [Spectral Ruleset](rules/gopuff-fulfillment-rules.yml)
-- [Plans](plans/gopuff-plans-pricing.yml)
-- [Rate Limits](rate-limits/gopuff-rate-limits.yml)
-- [Fin Ops](finops/gopuff-finops.yml)
+Example requests and responses.
 
-## Maintainers
+- [Gopuff Availability Example](https://apis.io/examples/gopuff/gopuff-availability-example/)
+- [Gopuff Carrier Rate Example](https://apis.io/examples/gopuff/gopuff-carrier-rate-example/)
+- [Gopuff Create Order Example](https://apis.io/examples/gopuff/gopuff-create-order-example/)
+- [Gopuff Get Order Example](https://apis.io/examples/gopuff/gopuff-get-order-example/)
+- [Gopuff Zone Check Example](https://apis.io/examples/gopuff/gopuff-zone-check-example/)
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+#### Collections (6)
+
+Postman and Open Collection request collections.
+
+- [Powered by Gopuff Fulfillment Availability API](https://apis.io/collections/gopuff/open-gopuff-availability-api/)
+- [Powered by Gopuff Fulfillment API](https://apis.io/collections/gopuff/open-gopuff-fulfillment/)
+- [Powered by Gopuff Fulfillment Availability Orders API](https://apis.io/collections/gopuff/open-gopuff-orders-api/)
+- [Powered by Gopuff Fulfillment Availability Rates API](https://apis.io/collections/gopuff/open-gopuff-rates-api/)
+- [Powered by Gopuff Fulfillment Availability Shops API](https://apis.io/collections/gopuff/open-gopuff-shops-api/)
+- [Powered by Gopuff Fulfillment Availability Zones API](https://apis.io/collections/gopuff/open-gopuff-zones-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Gopuff — fulfillment rules](https://apis.io/rules/gopuff/gopuff-fulfillment-rules/)
+- [Gopuff — jsonschema rules](https://apis.io/rules/gopuff/gopuff-jsonschema-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Gopuff Authentication](https://apis.io/security/gopuff/gopuff-authentication/)
+- [Gopuff Domain Security](https://apis.io/security/gopuff/gopuff-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Gopuff Plans Pricing](https://apis.io/plans/gopuff/gopuff-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Gopuff Rate Limits](https://apis.io/rate-limits/gopuff/gopuff-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Gopuff Finops](https://apis.io/finops/gopuff/gopuff-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.gopuff.com)
+- [Blog](https://www.gopuff.com/newsroom)
+- [GitHub](https://github.com/gopuff)
+
+## API Evangelist rating
+
+**Kin Score 35.0** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 67.0 |
+| Contract quality | 55.6 |
+| Contract governance | 27.3 |
+| Operational transparency | 2.6 |
+| Developer ergonomics | 38.1 |
+| Access clarity | 18.4 |
+
+**Agent readiness 23.7** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/gopuff/](https://apis.io/providers/gopuff/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Gopuff: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/gopuff/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
